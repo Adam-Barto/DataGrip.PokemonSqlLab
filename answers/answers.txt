@@ -1,0 +1,84 @@
+### Part 2: Simple Selects and Counts
+Directions: Write a sql query or sql queries that can answer the following questions
+
+* What are all the types of pokemon that a pokemon can have?
+    # SELECT * FROM types;
+
+    # Didn't feel like typing them all out here.
+* What is the name of the pokemon with id 45?
+    # SELECT name FROM pokemons WHERE id = 45;
+
+    # Eevee
+* How many pokemon are there?
+    # SELECT COUNT(*) FROM pokemons;
+
+    # 656
+* How many types are there?
+    # SELECT COUNT(*) FROM types;
+
+    # 18
+* How many pokemon have a secondary type?
+    # SELECT * FROM pokemons WHERE secondary_type is NULL;
+
+    # 340
+### Part 3: Joins and Groups
+Directions: Write a sql query or sql queries that can answer the following questions
+
+
+* What is each pokemon's primary type?
+    # SELECT pokemons.name, types.name FROM pokemons
+    # LEFT JOIN types ON types.id = pokemons.primary_type;
+* What is Rufflet's secondary type?
+    # SELECT pokemons.name, types.name FROM pokemons
+    # LEFT JOIN types on types.id = pokemons.secondary_type
+    # WHERE pokemons.name = 'Rufflet';
+
+    # Flying
+* What are the names of the pokemon that belong to the trainer with trainerID 303?
+    # SELECT pokemons.name, pt.pokemon_id FROM pokemon_trainer AS pt
+    # RIGHT JOIN pokemons ON pokemons.id = pt.pokemon_id
+    # WHERE pt.trainerID = 303;
+
+    # | name      | pokemon_id |
+    # +-----------+------------+
+    # | Wailord   |          2 |
+    # | Vileplume |          3 |
+    # +-----------+------------+
+* How many pokemon have a secondary type `Poison`
+    # SELECT COUNT(pokemons.name) AS "Pokemon with second type as poison" FROM pokemons
+    # LEFT JOIN types ON types.id = pokemons.secondary_type
+    # WHERE types.name = 'Poison';
+
+    # +------------------------------------+
+    # | Pokemon with second type as poison |
+    # +------------------------------------+
+    # |                                 31 |
+    # +------------------------------------+
+
+* What are all the primary types and how many pokemon have that type?
+* How many pokemon at level 100 does each trainer with at least one level 100 pokemone have? (Hint: your query should not display a trainer
+* How many pokemon only belong to one trainer and no other?
+
+### Part 4: Final Report
+
+Directions: Write a query that returns the following collumns:
+
+| Pokemon Name | Trainer Name | Level | Primary Type | Secondary Type |
+|:------------:|:------------:|:-----:|:------------:|:--------------:|
+| Pokemon's name| Trainer's name| Current Level| Primary Type Name| Secondary Type Name|
+
+Sort the data by finding out which trainer has the strongest pokemon so that this will act as a ranking of strongest to weakest trainer. You may interpret strongest in whatever way you want, but you will have to explain your decision.
+
+## Turning in this assignment
+
+To turn in this assignment, create files for each part with at least one query for each question answered. Above each query include a comment with the question you were answering. The files should have the extension `.sql`
+Example:
+
+```SQL
+ # How many characters are in the string 'Hello World!'
+ SELECT CHAR_LENGTH('Hello World!') AS length_of_hello_world
+```
+
+For Part 4 specifically also leave a comment explaining how your query is deciding who the strongest trainer is
+
+Once all of that is done, submit your file by saving it in the "answers" directory and committing it to your fork.
