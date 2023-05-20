@@ -56,7 +56,36 @@ Directions: Write a sql query or sql queries that can answer the following quest
     # +------------------------------------+
 
 * What are all the primary types and how many pokemon have that type?
+    # SELECT types.name, COUNT(pokemons.primary_type) FROM pokemons
+    # LEFT JOIN types ON pokemons.primary_type = types.id
+    # GROUP BY types.name;
+
+    # +----------+------------------------------+
+    # | name     | count(pokemons.primary_type) |
+    # +----------+------------------------------+
+    # | Normal   |                           90 |
+    # | Water    |                           95 |
+    # | Grass    |                           59 |
+    # | Rock     |                           38 |
+    # | Fire     |                           38 |
+    # | Ground   |                           29 |
+    # | Poison   |                           27 |
+    # | Bug      |                           61 |
+    # | Electric |                           35 |
+    # | Dragon   |                           22 |
+    # | Steel    |                           19 |
+    # | Dark     |                           24 |
+    # | Fighting |                           25 |
+    # | Psychic  |                           38 |
+    # | Ghost    |                           19 |
+    # | Fairy    |                           14 |
+    # | Ice      |                           22 |
+    # | Flying   |                            1 |
+    # +----------+------------------------------+
 * How many pokemon at level 100 does each trainer with at least one level 100 pokemone have? (Hint: your query should not display a trainer
+    # SELECT COUNT(*) FROM pokemon_trainer WHERE pokemon_trainer.pokelevel >= 100;
+#     I don't think that is the right answer.
+
 * How many pokemon only belong to one trainer and no other?
 
 ### Part 4: Final Report
